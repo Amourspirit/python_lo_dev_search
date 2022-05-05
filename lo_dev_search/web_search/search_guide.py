@@ -12,6 +12,7 @@ class SearchDevEnum(IntEnum):
     CHART = auto()
     BASE = auto()
     FORM = auto()
+    IMPRESS = auto()
 
 
 def search_url_writer(search: str = '') -> str:
@@ -74,6 +75,8 @@ def _browse(url: str) -> None:
     webbrowser.open(url)
 
 def search(where: SearchDevEnum, search_str: str = '') -> None:
+    # The drawing capabilities of Draw and Impress are identical.
+    # https://tinyurl.com/y2pqyyv8
     if where == SearchDevEnum.BASE:
         _browse(search_url_base(search_str))
     elif where == SearchDevEnum.CALC:
@@ -81,6 +84,8 @@ def search(where: SearchDevEnum, search_str: str = '') -> None:
     elif where == SearchDevEnum.CHART:
         _browse(search_url_chart(search_str))
     elif where == SearchDevEnum.DRAW:
+        _browse(search_url_draw(search_str))
+    elif where == SearchDevEnum.IMPRESS:
         _browse(search_url_draw(search_str))
     elif where == SearchDevEnum.FORM:
         _browse(search_url_form(search_str))

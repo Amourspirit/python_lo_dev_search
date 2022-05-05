@@ -1,5 +1,5 @@
 {
-    "lodoc_search": "https://duckduckgo.com/?q={0}+site:api.libreoffice.org/docs/idl/",
+    "lodoc_search": "https://www.google.com/search?q=site:api.libreoffice.org/docs/idl/ {0}",
     "loguide_writer_url": "https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Text_Documents",
     "loguide_writer_search": "https://www.google.com/search?q=site:wiki.openoffice.org/wiki/Documentation/DevGuide/Text/ {0}",
     "loguide_calc_url": "https://wiki.openoffice.org/wiki/Documentation/DevGuide/Spreadsheets/Spreadsheet_Documents",
