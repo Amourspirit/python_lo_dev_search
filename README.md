@@ -2,6 +2,16 @@
 
 Simplified searching for LibreOffice Developers.
 
+## Installation
+
+### pip
+
+lo-dev-search [PyPI](https://pypi.org/project/lo-dev-search/)
+
+```sh
+pip install lo-dev-search
+```
+
 ## Finding API Documentation Online
 
 The online API documentation can be time-consuming to search due to its great size.
