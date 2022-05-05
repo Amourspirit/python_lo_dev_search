@@ -4,12 +4,12 @@ import os
 from setuptools import setup, find_packages
 # from scriptforge_stubs import __version__
 PKG_NAME = 'lo-dev-search'
-VERSION = "0.0.1"
+VERSION = "1.0.0"
 
 # The directory containing this file
 HERE = pathlib.Path(__file__).parent
 # The text of the README file
-with open(HERE / "README.rst") as fh:
+with open(HERE / "README.md") as fh:
     README = fh.read()
 
 # src_path = str(HERE / 'lo_dev_search')
@@ -17,7 +17,7 @@ with open(HERE / "README.rst") as fh:
 setup(
     name=PKG_NAME,
     version=VERSION,
-    package_data={"": ["*.json"]},
+    package_data={"": ["*.json", "*.sqlite"]},
     python_requires='>=3.7.0',
     url="https://github.com/Amourspirit/python_lo_dev_search",
     packages=find_packages(),
@@ -42,9 +42,10 @@ setup(
         'console_scripts': [
             'lodoc=lo_dev_search.cli.lodoc:main',
             'loguide=lo_dev_search.cli.loguide:main',
+            'loapi=lo_dev_search.cli.loapi:main',
         ]
     },
     description="LibreOffice Developer Search Engine",
-    long_description_content_type="text/x-rst",
+    long_description_content_type="text/markdown",
     long_description=README
 )
