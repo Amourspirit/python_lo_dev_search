@@ -12,7 +12,36 @@ class AppConfig:
     
     https://duckduckgo.com/?q={0}+site:api.libreoffice.org/docs/idl/
     """
-
+    loguide_writer_url: str
+    """Writer Dev Guide Url"""
+    loguide_writer_search: str
+    """Writer Dev Guide Search Url"""
+    loguide_calc_url: str
+    """Calc Dev Guide Url"""
+    loguide_calc_search: str
+    """Calc Dev Guide Search Url"""
+    loguide_draw_url: str
+    """Draw Dev Guide Url"""
+    loguide_draw_search: str
+    """Draw Dev Guide Search Url"""
+    loguide_chart_url: str
+    """Chart Dev Guide Url"""
+    loguide_chart_search: str
+    """Chart Dev Guide Search Url"""
+    loguide_base_url: str
+    """Base Dev Guide Url"""
+    loguide_base_search: str
+    """Base Dev Guide Search Url"""
+    loguide_form_url: str
+    """Form Dev Guide Url"""
+    loguide_form_search: str
+    """Form Dev Guide Search Url"""
+    loguide_dev_url: str
+    """Writer Dev Guide Url"""
+    loguide_dev_search: str
+    """Dev Guide Search Url"""
+    loguide_url: str
+    """Dev Guide Url"""
 
 def read_config(config_file: str) -> AppConfig:
     """
