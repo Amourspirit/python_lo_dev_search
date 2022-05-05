@@ -17,7 +17,7 @@ with open(HERE / "README.rst") as fh:
 setup(
     name=PKG_NAME,
     version=VERSION,
-    package_data={"": ["*.json"]},
+    package_data={"": ["*.json", "*.sqlite"]},
     python_requires='>=3.7.0',
     url="https://github.com/Amourspirit/python_lo_dev_search",
     packages=find_packages(),
