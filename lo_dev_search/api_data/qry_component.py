@@ -27,7 +27,7 @@ class QryComponent(BaseSql):
             Where component.id_component like :namespace
             Limit 1;"""
         args = {"namespace": full_ns}
-        result: Component = None
+        result = None
         with SqlCtx(self.conn_str) as db:
             db.cursor.execute(qry_str, args)
             for row in db.cursor:
@@ -91,6 +91,7 @@ class QryComponent(BaseSql):
 
         Args:
             search_str (str): search string that can be used with % and _
+            limit (int, optional): Limits number of return if Limt > 0. Defaults to 0.
 
         Returns:
             List[Component]: Component instances.
