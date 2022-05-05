@@ -12,7 +12,7 @@ HERE = pathlib.Path(__file__).parent
 with open(HERE / "README.rst") as fh:
     README = fh.read()
 
-src_path = str(HERE / 'src')
+# src_path = str(HERE / 'lo_dev_search')
 
 setup(
     name=PKG_NAME,
@@ -38,6 +38,11 @@ setup(
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
     ],
+    entry_points = {
+        'console_scripts': [
+            'lodoc=lo_dev_search.cli.lodoc:main',
+        ]
+    },
     description="LibreOffice Developer Search Engine",
     long_description_content_type="text/x-rst",
     long_description=README
