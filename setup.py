@@ -4,7 +4,7 @@ import os
 from setuptools import setup, find_packages
 # from scriptforge_stubs import __version__
 PKG_NAME = 'lo-dev-search'
-VERSION = "0.0.1"
+VERSION = "1.0.0"
 
 # The directory containing this file
 HERE = pathlib.Path(__file__).parent
