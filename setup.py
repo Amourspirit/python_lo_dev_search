@@ -9,7 +9,7 @@ VERSION = "0.0.1"
 # The directory containing this file
 HERE = pathlib.Path(__file__).parent
 # The text of the README file
-with open(HERE / "README.rst") as fh:
+with open(HERE / "README.md") as fh:
     README = fh.read()
 
 # src_path = str(HERE / 'lo_dev_search')
@@ -46,6 +46,6 @@ setup(
         ]
     },
     description="LibreOffice Developer Search Engine",
-    long_description_content_type="text/x-rst",
+    long_description_content_type="text/markdown",
     long_description=README
 )
