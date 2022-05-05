@@ -48,7 +48,3 @@ def search(arg1:str, arg2 = "", arg3 = ""):
     config = util.get_app_cfg()
     url = config.lodoc_search.format(stxt)
     webbrowser.open(url)
-
-
-if __name__ == '__main__':
-    search("interface")

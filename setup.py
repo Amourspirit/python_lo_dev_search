@@ -41,6 +41,7 @@ setup(
     entry_points = {
         'console_scripts': [
             'lodoc=lo_dev_search.cli.lodoc:main',
+            'loguide=lo_dev_search.cli.loguide:main',
         ]
     },
     description="LibreOffice Developer Search Engine",

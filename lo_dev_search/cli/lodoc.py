@@ -30,5 +30,5 @@ def main() -> int:
     search_lo_doc.search(arg1=arg1, arg2=arg2, arg3=arg3)
     return 0
 
-if __name__ == "__main__":
-    raise SystemExit(main())
+# if __name__ == "__main__":
+#     raise SystemExit(main())
