@@ -42,6 +42,7 @@ setup(
         'console_scripts': [
             'lodoc=lo_dev_search.cli.lodoc:main',
             'loguide=lo_dev_search.cli.loguide:main',
+            'loapi=lo_dev_search.cli.loapi:main',
         ]
     },
     description="LibreOffice Developer Search Engine",
