@@ -241,7 +241,7 @@ def main() -> int:
         parser.print_help()
         return 0
     args = parser.parse_args()
-    print(args)
+    # print(args)
     _args_process_cmd(args)
 
     return 0
