@@ -2,6 +2,7 @@
 from typing import Dict, List, Optional, Union
 from .base_sql import BaseSql
 from .sql_ctx import SqlCtx
+from .ooo_type import OooType
 from ..data_class.component import Component
 
 
@@ -85,7 +86,7 @@ class QryComponent(BaseSql):
 
         return result
 
-    def get_components(self, search_str: str, limit: int = 0) -> List[Component]:
+    def get_components(self, search_str: str, type: Optional[OooType] = None, limit: int = 0) -> List[Component]:
         """
         Gets component instances for a given namespace
 
@@ -96,13 +97,19 @@ class QryComponent(BaseSql):
         Returns:
             List[Component]: Component instances.
         """
+        if type is None:
+            s_type = ""
+        else:
+            s_type = f"\nAND component.type like '{type}'"
         qry_str = """SELECT component.id_component, component.name, component.namespace as ns,
             component.type, component.version, component.lo_ver, component.file, component.url, component.c_name,
             component.map_name, module_detail.sort as sort
             FROM component
             LEFT JOIN module_detail ON module_detail.id_namespace = component.id_component
             Where component.id_component like :namespace
-            ORDER By module_detail.sort"""
+            """
+        qry_str += s_type
+        qry_str += "\nORDER By module_detail.sort"
         if limit > 0:
             qry_str += f"\nLimit {limit}"
         qry_str += ';'

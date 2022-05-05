@@ -1,15 +1,16 @@
 # coding: utf-8
+# region Imports
 import webbrowser
 import sys
 import argparse
 from typing import List, Union
+from lo_dev_search.api_data.ooo_type import OooType
 from ..api_search import search_api
 from ..data_class.component import Component
 from ..data_class.module_info import ModuleInfo
+# endregion Imports
 
 # region Terminal Questions
-
-
 def query_comp_choice(comps: List[Component]) -> Union[int, None]:
     """
     Ask for a choice of which component to open url for.
@@ -29,7 +30,7 @@ def query_comp_choice(comps: List[Component]) -> Union[int, None]:
     prompt = f'\n{"[0],":<5} Cancel'
     for i, comp in enumerate(comps, 1):
         prompt = prompt + \
-            f"\n{f'[{i}],':<5} {comp.name:<33} - {comp.id_component}"
+            f"\n{f'[{i}],':<5} {comp.name:<33} - {comp.id_component:<55} - {comp.type}"
         i += 1
     prompt += '\n'
     while True:
@@ -90,7 +91,9 @@ def query_mod_choice(infos: List[ModuleInfo]) -> Union[int, None]:
             sys.stdout.write(f"Please respond with input from 0 - {c_len}\n")
 # endregion Terminal Questions
 
+# region Parser
 
+# region Parser Args
 def _args_comp(parser: argparse.ArgumentParser) -> None:
     parser.add_argument(
         '-s', '--search',
@@ -100,14 +103,14 @@ def _args_comp(parser: argparse.ArgumentParser) -> None:
         required=True
     )
     parser.add_argument(
-        '-l', '--no-leading',
+        '-b', '--no-before',
         help="No leading wildcard in search",
         action='store_false',
         dest='leading',
         default=True
     )
     parser.add_argument(
-        '-t', '--no-trailing',
+        '-a', '--no-after',
         help="No trailing wildcard in search",
         action='store_false',
         dest='trailing',
@@ -115,12 +118,22 @@ def _args_comp(parser: argparse.ArgumentParser) -> None:
     )
     parser.add_argument(
         '-m', '--max-results',
-        help="Limits the number of results returned: Default 10",
+        help="Limits the number of results returned: Default (default: %(default)s)",
         action='store',
         dest='limit',
         type=int,
         default=10
     )
+    parser.add_argument(
+        '-t',
+        '--component-type',
+        default='any',
+        const='any',
+        nargs='?',
+        dest='component_type',
+        choices=['any', 'const', 'enum', 'exception', 'interface',
+                 'singleton', 'service', 'struct', 'typedef'],
+        help="Select type of component (default: %(default)s)")
 
 
 def _args_mod(parser: argparse.ArgumentParser) -> None:
@@ -132,14 +145,14 @@ def _args_mod(parser: argparse.ArgumentParser) -> None:
         required=True
     )
     parser.add_argument(
-        '-l', '--no-leading',
+        '-b', '--no-before',
         help="No leading wildcard in search",
         action='store_false',
         dest='leading',
         default=True
     )
     parser.add_argument(
-        '-t', '--no-trailing',
+        '-a', '--no-after',
         help="No trailing wildcard in search",
         action='store_false',
         dest='trailing',
@@ -147,13 +160,15 @@ def _args_mod(parser: argparse.ArgumentParser) -> None:
     )
     parser.add_argument(
         '-m', '--max-results',
-        help="Limits the number of results returned: Default 10",
+        help="Limits the number of results returned: Default (default: %(default)s)",
         action='store',
         dest='limit',
         type=int,
         default=10
     )
+# endregion Parser Args
 
+# region Parser Actions
 def _args_comp_action(args: argparse.Namespace) -> int:
     search = "%".join(str(args.search).split())
     if len(search) <= 2:
@@ -163,7 +178,12 @@ def _args_comp_action(args: argparse.Namespace) -> int:
         search = "%" + search
     if args.trailing:
         search = search + '%'
-    results = search_api.search_component(search, limit=int(args.limit))
+    if args.component_type == "any":
+        o_type = None
+    else:
+        o_type = OooType(args.component_type)
+    results = search_api.search_component(
+        search=search, type=o_type, limit=int(args.limit))
     if len(results) == 0:
         print('Search produced no results')
         return 0
@@ -194,13 +214,18 @@ def _args_mod_action(args: argparse.Namespace) -> int:
         url = f"{md.url_base}/namespace{s}.html"
         webbrowser.open(url)
     return 0
+# endregion Parser Actions
 
+# region Parser Command Process
 def _args_process_cmd(args: argparse.Namespace) -> int:
     if args.command == "comp":
         return _args_comp_action(args)
     elif args.command == "ns":
         return _args_mod_action(args)
     return 0
+# endregion Parser Command Process
+
+# endregion Parser
 
 
 def main() -> int:
