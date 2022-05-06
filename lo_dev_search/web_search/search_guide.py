@@ -80,7 +80,7 @@ def _browse(url: str) -> None:
     subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 
-def search(where: SearchDevEnum, search_str: str = '', verbatium: bool = True) -> None:
+def search(where: SearchDevEnum, search_str: str = '', verbatim: bool = True) -> None:
     # The drawing capabilities of Draw and Impress are identical.
     # https://tinyurl.com/y2pqyyv8
     def get_txt(s: str) -> str:
@@ -88,7 +88,7 @@ def search(where: SearchDevEnum, search_str: str = '', verbatium: bool = True) -
             return s
         st = s.strip("'").strip('"')
         return f'"{st}"'
-    if verbatium:
+    if verbatim:
         s = get_txt(search_str)
     else:
         s = search_str

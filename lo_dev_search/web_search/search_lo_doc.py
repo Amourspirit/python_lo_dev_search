@@ -6,7 +6,7 @@ from ..utils import util
 _PATH = str(Path(__file__).parent)
 
 
-def search(arg1: str, arg2="", arg3="", verbatium: bool = True) -> None:
+def search(arg1: str, arg2="", arg3="", verbatim: bool = True) -> None:
     """
     Searches the supplied search engine and narrows search to LibreOffice API.
 
@@ -69,7 +69,7 @@ def search(arg1: str, arg2="", arg3="", verbatium: bool = True) -> None:
         if s2 == "":
             print("Consider adding 'service' or 'module' to the search args")
 
-    if verbatium:
+    if verbatim:
         if auto_assigned is True:
             stxt = f"{get_txt(s1)} AND {get_txt(s2)} AND {get_txt(s3)}"
         else:
