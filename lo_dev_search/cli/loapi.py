@@ -1,14 +1,22 @@
 # coding: utf-8
 # region Imports
-import webbrowser
 import sys
 import argparse
+import subprocess
+from pathlib import Path
 from typing import List, Union
 from lo_dev_search.api_data.ooo_type import OooType
 from ..api_search import search_api
 from ..data_class.component import Component
 from ..data_class.module_info import ModuleInfo
+from ..web_search import __mod_path__
 # endregion Imports
+
+
+def _browse(url: str) -> None:
+    # opening in subprocess prevents extra output to termnial.
+    cmd = [sys.executable, str(Path(__mod_path__, "browse.py")), url]
+    subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 # region Terminal Questions
 def query_comp_choice(comps: List[Component]) -> Union[int, None]:
@@ -190,7 +198,7 @@ def _args_comp_action(args: argparse.Namespace) -> int:
     choice = query_comp_choice(results)
     if choice is not None:
         url = results[choice].url
-        webbrowser.open(url)
+        _browse(url)
     return 0
 
 
@@ -212,7 +220,7 @@ def _args_mod_action(args: argparse.Namespace) -> int:
         md = results[choice]
         s = "_1_1".join(md.id_module_info.split('.'))
         url = f"{md.url_base}/namespace{s}.html"
-        webbrowser.open(url)
+        _browse(url)
     return 0
 # endregion Parser Actions
 

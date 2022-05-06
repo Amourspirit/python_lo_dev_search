@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # coding: utf-8
 import sys
 from ..web_search import search_lo_doc
@@ -29,6 +28,3 @@ def main() -> int:
     arg3 = "" if search_len < 3 else " ".join(search)
     search_lo_doc.search(arg1=arg1, arg2=arg2, arg3=arg3)
     return 0
-
-# if __name__ == "__main__":
-#     raise SystemExit(main())
