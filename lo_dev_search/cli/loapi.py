@@ -1,16 +1,29 @@
 # coding: utf-8
 # region Imports
-import webbrowser
 import sys
 import argparse
+import subprocess
+from pathlib import Path
 from typing import List, Union
 from lo_dev_search.api_data.ooo_type import OooType
 from ..api_search import search_api
 from ..data_class.component import Component
 from ..data_class.module_info import ModuleInfo
+from ..web_search import __mod_path__
 # endregion Imports
 
+# region Internal Func
+
+
+def _browse(url: str) -> None:
+    # opening in subprocess prevents extra output to termnial.
+    cmd = [sys.executable, str(Path(__mod_path__, "browse.py")), url]
+    subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+# endregion Internal Func
+
 # region Terminal Questions
+
+
 def query_comp_choice(comps: List[Component]) -> Union[int, None]:
     """
     Ask for a choice of which component to open url for.
@@ -94,6 +107,8 @@ def query_mod_choice(infos: List[ModuleInfo]) -> Union[int, None]:
 # region Parser
 
 # region Parser Args
+
+
 def _args_comp(parser: argparse.ArgumentParser) -> None:
     parser.add_argument(
         '-s', '--search',
@@ -169,6 +184,8 @@ def _args_mod(parser: argparse.ArgumentParser) -> None:
 # endregion Parser Args
 
 # region Parser Actions
+
+
 def _args_comp_action(args: argparse.Namespace) -> int:
     search = "%".join(str(args.search).split())
     if len(search) <= 2:
@@ -190,7 +207,7 @@ def _args_comp_action(args: argparse.Namespace) -> int:
     choice = query_comp_choice(results)
     if choice is not None:
         url = results[choice].url
-        webbrowser.open(url)
+        _browse(url)
     return 0
 
 
@@ -212,11 +229,13 @@ def _args_mod_action(args: argparse.Namespace) -> int:
         md = results[choice]
         s = "_1_1".join(md.id_module_info.split('.'))
         url = f"{md.url_base}/namespace{s}.html"
-        webbrowser.open(url)
+        _browse(url)
     return 0
 # endregion Parser Actions
 
 # region Parser Command Process
+
+
 def _args_process_cmd(args: argparse.Namespace) -> int:
     if args.command == "comp":
         return _args_comp_action(args)
