@@ -1,11 +1,16 @@
 #!/usr/bin/env python
 # coding: utf-8
+# region Imports
 import argparse
 from ..web_search.search_guide import search, SearchDevEnum
+# endregion Imports
+
+# region Interanl Func
 
 
 def _get_help(app_name: str) -> str:
     return f"Search {app_name} developer guide for supplied search terms."
+# endregion Interanl Func
 
 # region parser
 # region    Add Arguments
@@ -13,35 +18,99 @@ def _get_help(app_name: str) -> str:
 
 def _args_cmd_writer(parser: argparse.ArgumentParser) -> None:
     parser.add_argument('search', nargs='*', help=_get_help("Writer"))
+    parser.add_argument(
+        "-v",
+        "--no-verbatium",
+        help="Non verbatium search",
+        action="store_false",
+        dest="verbatium",
+        default=True,
+    )
 
 
 def _args_cmd_calc(parser: argparse.ArgumentParser) -> None:
     parser.add_argument('search', nargs='*', help=_get_help("Calc"))
+    parser.add_argument(
+        "-v",
+        "--no-verbatium",
+        help="Non verbatium search",
+        action="store_false",
+        dest="verbatium",
+        default=True,
+    )
 
 
 def _args_cmd_draw(parser: argparse.ArgumentParser) -> None:
     parser.add_argument('search', nargs='*', help=_get_help("Draw"))
+    parser.add_argument(
+        "-v",
+        "--no-verbatium",
+        help="Non verbatium search",
+        action="store_false",
+        dest="verbatium",
+        default=True,
+    )
 
 
 def _args_cmd_impress(parser: argparse.ArgumentParser) -> None:
     parser.add_argument('search', nargs='*', help=_get_help("Impress"))
+    parser.add_argument(
+        "-v",
+        "--no-verbatium",
+        help="Non verbatium search",
+        action="store_false",
+        dest="verbatium",
+        default=True,
+    )
 
 
 def _args_cmd_chart(parser: argparse.ArgumentParser) -> None:
     parser.add_argument('search', nargs='*', help=_get_help("Chart"))
+    parser.add_argument(
+        "-v",
+        "--no-verbatium",
+        help="Non verbatium search",
+        action="store_false",
+        dest="verbatium",
+        default=True,
+    )
 
 
 def _args_cmd_base(parser: argparse.ArgumentParser) -> None:
     parser.add_argument('search', nargs='*', help=_get_help("Base"))
+    parser.add_argument(
+        "-v",
+        "--no-verbatium",
+        help="Non verbatium search",
+        action="store_false",
+        dest="verbatium",
+        default=True,
+    )
 
 
 def _args_cmd_form(parser: argparse.ArgumentParser) -> None:
     parser.add_argument('search', nargs='*', help=_get_help("Form"))
+    parser.add_argument(
+        "-v",
+        "--no-verbatium",
+        help="Non verbatium search",
+        action="store_false",
+        dest="verbatium",
+        default=True,
+    )
 
 
 def _args_cmd_general(parser: argparse.ArgumentParser) -> None:
     parser.add_argument(
         'search', nargs='*', help="Search developer guide for supplied search terms.")
+    parser.add_argument(
+        "-v",
+        "--no-verbatium",
+        help="Non verbatium search",
+        action="store_false",
+        dest="verbatium",
+        default=True,
+    )
 # endregion    Add Arguments
 
 
@@ -51,22 +120,24 @@ def _args_process_cmd(
     def get_search():
         return " ".join(args.search)
     if args.command == "writer":
-        search(SearchDevEnum.WRITER, get_search())
+        search(SearchDevEnum.WRITER, get_search(), bool(args.verbatium))
     elif args.command == "calc":
-        search(SearchDevEnum.CALC, get_search())
+        search(SearchDevEnum.CALC, get_search(), bool(args.verbatium))
     elif args.command == "draw":
-        search(SearchDevEnum.DRAW, get_search())
+        search(SearchDevEnum.DRAW, get_search(), bool(args.verbatium))
     elif args.command == "impress":
-        search(SearchDevEnum.IMPRESS, get_search())
+        search(SearchDevEnum.IMPRESS, get_search(), bool(args.verbatium))
     elif args.command == "chart":
-        search(SearchDevEnum.CHART, get_search())
+        search(SearchDevEnum.CHART, get_search(), bool(args.verbatium))
     elif args.command == "base":
-        search(SearchDevEnum.BASE, get_search())
+        search(SearchDevEnum.BASE, get_search(), bool(args.verbatium))
     elif args.command == "form":
-        search(SearchDevEnum.FORM, get_search())
+        search(SearchDevEnum.FORM, get_search(), bool(args.verbatium))
     elif args.command == "general":
-        search(SearchDevEnum.DEV, get_search())
+        search(SearchDevEnum.DEV, get_search(), bool(args.verbatium))
 # endregion parser
+
+# region main()
 
 
 def main() -> int:
@@ -105,3 +176,4 @@ def main() -> int:
     _args_process_cmd(args)
     # print(args)
     return 0
+# endregion main()
