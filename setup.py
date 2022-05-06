@@ -1,18 +1,15 @@
 #!/usr/bin/env python
 import pathlib
-import os
 from setuptools import setup, find_packages
 # from scriptforge_stubs import __version__
 PKG_NAME = 'lo-dev-search'
-VERSION = "1.0.0"
+VERSION = "1.1.1"
 
 # The directory containing this file
 HERE = pathlib.Path(__file__).parent
 # The text of the README file
 with open(HERE / "README.md") as fh:
     README = fh.read()
-
-# src_path = str(HERE / 'lo_dev_search')
 
 setup(
     name=PKG_NAME,
