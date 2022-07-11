@@ -3,7 +3,7 @@ import pathlib
 from setuptools import setup, find_packages
 # from scriptforge_stubs import __version__
 PKG_NAME = 'lo-dev-search'
-VERSION = "1.1.1"
+VERSION = "1.2.0"
 
 # The directory containing this file
 HERE = pathlib.Path(__file__).parent
@@ -40,6 +40,7 @@ setup(
             'lodoc=lo_dev_search.cli.lodoc:main',
             'loguide=lo_dev_search.cli.loguide:main',
             'loapi=lo_dev_search.cli.loapi:main',
+            'loproc=lo_dev_search.cli.loproc:main',
         ]
     },
     description="LibreOffice Developer Search Engine",

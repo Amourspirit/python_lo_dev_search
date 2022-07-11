@@ -163,3 +163,13 @@ Choose an option (default 1):
 
 Choosing any number greater than `0` opens the that components url.
 Option `4` would open to <https://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1xml_1_1crypto.html>
+
+## loproc
+
+While developing/debugging code, it's quite easy to inadvertently trigger a runtime exception in the Office API. In the worst case, this can cause your program to exit without shutting down the *soffice* process.
+
+`loproc --running` show if the process is running.
+
+`loproc --kill` kills the process if it is running.
+
+There is no issue running `loproc --kill` without running `loproc --running`.
