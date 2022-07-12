@@ -5,6 +5,8 @@ import argparse
 from typing import Tuple
 import psutil
 from ..utils.sys_info import SysInfo
+from ..utils.question import query_yes_no
+
 
 def _get_lo_process_names() -> Tuple[str, ...]:
     platform = SysInfo.get_platform()
@@ -12,6 +14,7 @@ def _get_lo_process_names() -> Tuple[str, ...]:
         return ("soffice.bin", "soffice.exe")
     else:
         return ("soffice.bin", "soffice")
+
 
 def is_lo_process_running() -> bool:
     names = _get_lo_process_names()
@@ -32,7 +35,6 @@ def kill_lo_process() -> bool:
         if proc.name() in names:
             result = True
             proc.kill()
-            break
     return result
 
 
@@ -52,20 +54,33 @@ def _args_main(parser: argparse.ArgumentParser) -> None:
         default=False
     )
 
+
 def main() -> int:
     parser = argparse.ArgumentParser(description='main')
     _args_main(parser)
 
     if len(sys.argv) <= 1:
         parser.print_help()
+        print("Other Commands, loapi, lodoc, loguide")
         return 0
     args = parser.parse_args()
-    
+
     if bool(args.running) and bool(args.kill):
-        parser.error('--kill or --running options are not allowed to be combined.')
-    
+        parser.error(
+            '--kill or --running options are not allowed to be combined.')
+
     if bool(args.running):
         print(f"Process running: {is_lo_process_running()}")
+        return
+
     if bool(args.kill):
-        print(f"Process killed: {kill_lo_process()}")
+        if is_lo_process_running():
+            if query_yes_no(f"Are you sure you want LibreOffice process'?", 'no'):
+                print(f"Process killed: {kill_lo_process()}")
+            else:
+                print('User canceled')
+        else:
+            print('Nothing to kill')
+    else:
+        print('Nothing to kill')
     return 0

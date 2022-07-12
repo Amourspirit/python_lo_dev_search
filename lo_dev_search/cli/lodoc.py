@@ -20,6 +20,7 @@ def _display_help() -> None:
         lodoc Impress
         """
     print(help)
+    print("Other Commands, loapi, loguide, loproc")
 # endregion interal Func
 
 # region main()
