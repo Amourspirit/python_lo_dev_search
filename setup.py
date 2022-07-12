@@ -3,7 +3,7 @@ import pathlib
 from setuptools import setup, find_packages
 # from scriptforge_stubs import __version__
 PKG_NAME = 'lo-dev-search'
-VERSION = "1.2.0"
+VERSION = "1.2.1"
 
 # The directory containing this file
 HERE = pathlib.Path(__file__).parent
