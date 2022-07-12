@@ -258,6 +258,7 @@ def main() -> int:
     _args_mod(cmd_mod)
     if len(sys.argv) <= 1:
         parser.print_help()
+        print("Other Commands, loguide, lodoc, loproc")
         return 0
     args = parser.parse_args()
     # print(args)

@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 # region Imports
+import sys
 import argparse
 from ..web_search.search_guide import search, SearchDevEnum
 # endregion Imports
@@ -167,6 +168,11 @@ def main() -> int:
     _args_cmd_base(cmd_base)
     _args_cmd_form(cmd_form)
     _args_cmd_general(cmd_general)
+
+    if len(sys.argv) <= 1:
+        parser.print_help()
+        print("Other Commands, loapi, lodoc, loproc")
+        return 0
 
     args = parser.parse_args()
     if args.command is None:
