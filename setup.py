@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 import pathlib
 from setuptools import setup, find_packages
-# from scriptforge_stubs import __version__
+from lo_dev_search import __version__
 PKG_NAME = 'lo-dev-search'
-VERSION = "1.2.1"
+VERSION = __version__
+
+
 
 # The directory containing this file
 HERE = pathlib.Path(__file__).parent
@@ -34,6 +36,9 @@ setup(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
+    ],
+    install_requires=[
+        'psutil>=5.9.0'
     ],
     entry_points = {
         'console_scripts': [
