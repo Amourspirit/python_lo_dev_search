@@ -1,12 +1,12 @@
 #!/usr/bin/env python
-import pathlib
+from pathlib import Path
 from setuptools import setup, find_packages
 # from scriptforge_stubs import __version__
 PKG_NAME = 'lo-dev-search'
-VERSION = "1.2.1"
+VERSION = "2.0.0"
 
 # The directory containing this file
-HERE = pathlib.Path(__file__).parent
+HERE = Path(__file__).parent
 # The text of the README file
 with open(HERE / "README.md") as fh:
     README = fh.read()
@@ -34,6 +34,7 @@ setup(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
     ],
     entry_points = {
         'console_scripts': [
