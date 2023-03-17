@@ -1,6 +1,6 @@
 # LibreOffice Developer Search
 
-Simplified searching for LibreOffice Developers.
+Simplified searching for LibreOffice Developers. This version targets LibreOffice `7.4`.
 
 ## Installation
 
@@ -10,6 +10,12 @@ lo-dev-search [PyPI](https://pypi.org/project/lo-dev-search/)
 
 ```sh
 pip install lo-dev-search
+```
+
+For LibreOffice `7.3`
+
+```sh
+pip install "lo-dev-search<2.0"
 ```
 
 ## Finding API Documentation Online

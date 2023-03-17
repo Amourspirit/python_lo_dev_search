@@ -1,14 +1,13 @@
 #!/usr/bin/env python
-import pathlib
+from pathlib import Path
 from setuptools import setup, find_packages
 from lo_dev_search import __version__
 PKG_NAME = 'lo-dev-search'
-VERSION = __version__
 
-
+VERSION = "2.0.0"
 
 # The directory containing this file
-HERE = pathlib.Path(__file__).parent
+HERE = Path(__file__).parent
 # The text of the README file
 with open(HERE / "README.md") as fh:
     README = fh.read()
@@ -36,6 +35,7 @@ setup(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
     ],
     install_requires=[
         'psutil>=5.9.0'
