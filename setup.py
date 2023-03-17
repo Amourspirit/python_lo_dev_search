@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 from pathlib import Path
 from setuptools import setup, find_packages
-# from scriptforge_stubs import __version__
+from lo_dev_search import __version__
 PKG_NAME = 'lo-dev-search'
+
 VERSION = "2.0.0"
 
 # The directory containing this file
@@ -35,6 +36,9 @@ setup(
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
+    ],
+    install_requires=[
+        'psutil>=5.9.0'
     ],
     entry_points = {
         'console_scripts': [
