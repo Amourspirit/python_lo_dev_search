@@ -1,6 +1,6 @@
 {
     "python.formatting.provider": "autopep8",
-    "python.defaultInterpreterPath": "${workspaceRoot}/env/bin/python",
+    "python.defaultInterpreterPath": "${workspaceRoot}/.venv/bin/python",
     "autoDocstring.docstringFormat": "google",
     "workbench.colorCustomizations": {
         "[Monokai]": {
