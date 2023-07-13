@@ -36,12 +36,14 @@ loproc = "lo_dev_search.cli.loproc:main"
 python = "^3.7"
 psutil = ">=5.8"
 
+[[tool.poetry.source]]
+name = "PyPI"
+priority = "primary"
 
 [[tool.poetry.source]]
 name = "pypi-test"
 url = "https://test.pypi.org/legacy/"
-default = false
-secondary = false
+priority = "supplemental"
 
 [build-system]
 requires = ["poetry-core"]
